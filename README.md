@@ -1,5 +1,5 @@
-# Aplicativos utilizados no sistema:
-- wofi (menus, pesquisa de apps, nmuito utilizado no hyprland)
+# Aplicativos utilizados no sistema
+- wofi (menus, pesquisa de apps)
 - hyprpaper
 - ranger (explorador de arquivos)
 - waybar
