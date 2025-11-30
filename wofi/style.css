@@ -1,0 +1,35 @@
+window {
+    background-color: rgba(0, 0, 0, 1);
+    border: 2px solid #df3079;
+    border-radius: 6px;
+    padding: 12px;
+}
+
+listitem:selected {
+    background: rgba(223,48,121,33);
+    color: #000000;
+}
+#input {
+    background: transparent;
+    border: 1px solid #df3079;
+    color: #df3079;
+    padding: 6px;
+    margin-bottom: 10px;
+    font-family: "Iosevka Nerd Font", monospace;
+    font-size: 14px;
+}
+
+#entry {
+    background: transparent;
+    border: none;
+    padding: 6px;
+}
+
+#entry:selected {
+    background: rgba(223,48,121,0.33);
+    border-left: 2px solid #df3079;
+}
+
+#text {
+    color: #df3079;
+}
