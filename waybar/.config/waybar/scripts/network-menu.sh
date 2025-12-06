@@ -1,5 +1,5 @@
 #!/bin/bash
-
+ARG=${1:-}
 # List available Wi-Fi networks
 wifi_list=$(nmcli -t -f SSID,SECURITY,SIGNAL dev wifi | awk -F: '
 {

@@ -1,0 +1,108 @@
+{
+  "layer": "top",
+  "position": "top",
+  "margin": 0,
+  "spacing": 2,
+  "height": 28,
+  
+  "modules-left": ["hyprland/workspaces", "custom/spotify"],
+  "modules-center": [],
+  "modules-right": [
+    "network",
+    "pulseaudio",
+    "custom/brightness",
+    "battery",
+    "clock"
+  ],
+  
+  "hyprland/workspaces": {
+    "all-outputs": true,
+    "disable-scroll": false
+  },
+  
+  "clock": {
+    "format": "%H:%M",
+    "tooltip-format": "%a %d %b %Y"
+  },
+  
+  "battery": {
+    "states": {
+      "good": 80,
+      "warning": 30,
+      "critical": 15
+    },
+    "interval": 5,
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% [▓▓▓▓▓▓]",
+    "format-charging": "{capacity}% {icon}",
+    "format-plugged": "{capacity}% {icon}",
+    "format-critical": "{capacity}% {icon}",
+    "format-icons": [
+      "[░░░░░░]",
+      "[▒░░░░░]",
+      "[▒▒░░░░]",
+      "[▒▒▒░░░]",
+      "[▒▒▒▒░░]",
+      "[▒▒▒▒▒░]",
+      "[▒▒▒▒▒▒]",
+      "[▓▒▒▒▒▒]",
+      "[▓▓▒▒▒▒]",
+      "[▓▓▓▒▒▒]",
+      "[▓▓▓▓▒▒]",
+      "[▓▓▓▓▓▒]",
+      "[▓▓▓▓▓▓]"
+    ]
+  },
+  
+  "network": {
+    "interface": "wlan0",
+    "on-click": "/home/thiago/.config/waybar/scripts/network-menu.sh",
+    "format": "[NET: {essid}]",
+    "format-disconnected": "[NET: OFF]"
+  },
+  
+  "pulseaudio": {
+    "format": "{volume}% {icon}",
+    "format-muted": "[MUTE]",
+    "format-icons": [
+      "[░░░░░░]",
+      "[▒░░░░░]",
+      "[▒▒░░░░]",
+      "[▒▒▒░░░]",
+      "[▒▒▒▒░░]",
+      "[▒▒▒▒▒░]",
+      "[▒▒▒▒▒▒]",
+      "[▓▒▒▒▒▒]",
+      "[▓▓▒▒▒▒]",
+      "[▓▓▓▒▒▒]",
+      "[▓▓▓▓▒▒]",
+      "[▓▓▓▓▓▒]",
+      "[▓▓▓▓▓▓]"
+    ],
+    "interval": 2,
+    "tooltip": true,
+    "on-click": "pavucontrol",
+    "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+    "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+    "on-right-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  },
+  
+  "custom/spotify": {
+    "exec": "/home/thiago/.config/waybar/scripts/spotify-karaoke.sh",
+    "interval": 0.50,
+    "max-length": 300,
+    "format": "{}",
+    "on-click": "playerctl play-pause",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+  
+  "custom/brightness": {
+    "exec": "/home/thiago/.config/waybar/scripts/brightness-bar.sh",
+    "interval": 1,
+    "format": "{}",
+    "tooltip": false,
+    "on-scroll-up": "brightnessctl s +5%",
+    "on-scroll-down": "brightnessctl s 5%-"
+  }
+}

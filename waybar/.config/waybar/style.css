@@ -1,0 +1,79 @@
+* {
+  font-family: "Iosevka Nerd Font", monospace;
+  font-size: 13px;
+  /* color: #f9e2af; */
+  /* color: #f9e2af; */
+  /* color: #f9e2af; */
+
+  color: #f9e2af;
+  border: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-shadow: none;
+}
+
+window#waybar {
+  /* background: rgba(0, 0, 0, 0.7); */
+  background: rgba(0, 0, 0, 1); /* 0 = transparente / 1 = opaco */
+  border-bottom: 2px solid #f9e2af;
+  padding-bottom: 2px;
+  padding-top: 2px;
+}
+
+/* #workspaces button {
+  color: #f9e2af;
+  background: transparent;
+  border-radius: 0%;
+  padding: 0 4px;
+} */
+
+/* #workspaces button.active {
+  border: 2px #f9e2af;
+  border-radius: 0%;
+  padding: 4px;
+  font-weight: bold;
+} */
+
+#clock,
+#battery,
+#network,
+#pulseaudio,
+#custom-spotify,
+#custom-brightness,
+#window {
+  padding: 0 8px;
+}
+
+tooltip {
+  background: #000000;
+  color: #f9e2af;
+  border: 1px solid #f9e2af;
+}
+
+/* Bateria normal */
+#battery {
+  color: #f9e2af; /* verde */
+}
+
+/* Aviso */
+#battery.warning {
+  color: #f9e2af; /* amarelo/laranja */
+}
+
+/* Crítico */
+#battery.critical {
+  color: #f9e2af; /* vermelho */
+}
+
+/* Carregando */
+#battery.charging {
+  color: #00FFFF; /* azul claro */
+}
+
+#pulseaudio.normal {
+  color: #f9e2af; /* verde */
+}
+
+#pulseaudio.warning {
+  color: #ac1f15; /* amarelo/laranja */
+}
