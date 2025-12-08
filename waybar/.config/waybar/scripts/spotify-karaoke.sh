@@ -10,27 +10,19 @@ MAX_CHARS=180
 
 # checar dependências
 if ! command -v playerctl >/dev/null 2>&1; then
-  echo "playerctl não encontrado"
+  echo "[playerctl não encontrado][instala: sudo pacman -S playerctl]"
   exit 1
 fi
 if ! command -v jq >/dev/null 2>&1; then
-  echo "jq não encontrado (instala: sudo pacman -S jq)"
+  echo "[jq não encontrado][instala: sudo pacman -S jq]"
   exit 1
 fi
-
-#status=$(playerctl status 2>/dev/null)
-#[[ "$status" != "Playing" ]] && { echo "[MUSIC: OFF]"; exit 0; }
-
-#title=$(playerctl metadata xesam:title 2>/dev/null)
-#artist=$(playerctl metadata xesam:artist 2>/dev/null)
-
-#[[ -z "$title" || -z "$artist" ]] && { echo "[Unknown track]"; exit 0; }
 
 title=$(playerctl metadata xesam:title 2>/dev/null)
 artist=$(playerctl metadata xesam:artist 2>/dev/null)
 
 if [[ -z "$title" || -z "$artist" ]]; then
-    echo "Music off"
+    echo "[MUSIC: OFF]"
     exit 0
 fi
 
@@ -49,7 +41,7 @@ query_title=$(printf "%s" "$title" | sed 's/ /%20/g')
 lyrics_raw=$(curl -s "https://lrclib.net/api/get?artist_name=$query_artist&track_name=$query_title" | jq -r '.syncedLyrics // empty')
 
 if [[ -z "$lyrics_raw" ]]; then
-    echo "♪ $artist - $title | (no synced lyrics)"
+    echo "[$artist - $title | (no synced lyrics)]"
     exit 0
 fi
 
@@ -63,9 +55,7 @@ while IFS= read -r line; do
         dec=${BASH_REMATCH[3]}
         txt=${BASH_REMATCH[4]}
 
-        # normalizar (se for "02" -> 2 ok, mas aritmética bash suporta)
-        # converter dec (1..3) para ms corretamente
-        dec_len=${#dec}
+            dec_len=${#dec}
         # converter "08", "09", etc. sem octal
             dec=$((10#$dec))
 
@@ -86,7 +76,7 @@ done <<< "$lyrics_raw"
 
 # se não houve linhas válidas
 if [[ -z "$parsed" ]]; then
-    echo "♪ $artist - $title | (no valid LRC lines)"
+    echo "[$artist - $title | (no valid LRC lines)]"
     exit 0
 fi
 
@@ -100,7 +90,7 @@ while IFS="|" read -r t w; do
     fi
 done <<< "$parsed"
 
-output="$artist - $title | $current_line"
+output="[$artist - $title | $current_line]"
 
 [[ ${#output} -gt $MAX_CHARS ]] && output="${output:0:MAX_CHARS}..."
 

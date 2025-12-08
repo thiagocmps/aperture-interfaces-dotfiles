@@ -11,8 +11,8 @@
     "network",
     "pulseaudio",
     "custom/brightness",
-    "battery",
-    "clock"
+    "clock",
+    "battery" 
   ],
   
   "hyprland/workspaces": {
@@ -32,7 +32,7 @@
       "critical": 15
     },
     "interval": 5,
-    "format": "{capacity}% {icon}",
+    "format": "BAT {capacity}% {icon}",
     "format-full": "{capacity}% [▓▓▓▓▓▓]",
     "format-charging": "{capacity}% {icon}",
     "format-plugged": "{capacity}% {icon}",
@@ -62,7 +62,7 @@
   },
   
   "pulseaudio": {
-    "format": "{volume}% {icon}",
+    "format": "VOL {volume}% {icon}",
     "format-muted": "[MUTE]",
     "format-icons": [
       "[░░░░░░]",
@@ -89,7 +89,7 @@
   
   "custom/spotify": {
     "exec": "/home/thiago/.config/waybar/scripts/spotify-karaoke.sh",
-    "interval": 0.50,
+    "interval": 1,
     "max-length": 300,
     "format": "{}",
     "on-click": "playerctl play-pause",
