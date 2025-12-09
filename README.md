@@ -10,5 +10,3 @@
 
 # QUESTOES PARA RESOLVER
 - Workspaces
-- spotify widget (implementar Eww)
-
