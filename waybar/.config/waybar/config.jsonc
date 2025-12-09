@@ -4,27 +4,32 @@
   "margin": 0,
   "spacing": 2,
   "height": 28,
-  
-  "modules-left": ["hyprland/workspaces", "custom/spotify"],
+
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/spotify",
+    "custom/audio-output"
+  ],
   "modules-center": [],
   "modules-right": [
     "network",
+    "custom/bluetooth",
     "pulseaudio",
     "custom/brightness",
     "clock",
-    "battery" 
+    "battery"
   ],
-  
+
   "hyprland/workspaces": {
     "all-outputs": true,
     "disable-scroll": false
   },
-  
+
   "clock": {
     "format": "%H:%M",
     "tooltip-format": "%a %d %b %Y"
   },
-  
+
   "battery": {
     "states": {
       "good": 80,
@@ -53,14 +58,14 @@
       "[▓▓▓▓▓▓]"
     ]
   },
-  
+
   "network": {
     "interface": "wlan0",
     "on-click": "/home/thiago/.config/waybar/scripts/network-menu.sh",
     "format": "[NET: {essid}]",
     "format-disconnected": "[NET: OFF]"
   },
-  
+
   "pulseaudio": {
     "format": "VOL {volume}% {icon}",
     "format-muted": "[MUTE]",
@@ -86,9 +91,9 @@
     "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
     "on-right-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
   },
-  
+
   "custom/spotify": {
-    "exec": "/home/thiago/.config/waybar/scripts/spotify-karaoke.sh",
+    "exec": "/home/thiago/.config/waybar/scripts/spotify-karaoke2.sh",
     "interval": 1,
     "max-length": 300,
     "format": "{}",
@@ -96,7 +101,25 @@
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous"
   },
-  
+
+  "custom/audio-output": {
+    "exec": "/home/thiago/.config/waybar/scripts/audio-output.sh",
+    "interval": 2,
+    "return-type": "json",
+    "format": "|>> {text}",
+    "tooltip": false
+  },
+
+  "custom/bluetooth": {
+    "exec": "/home/thiago/.config/waybar/scripts/bluetooth-status.sh",
+    "interval": 1,
+    "return-type": "json",
+    "format": "[BT {text}]",
+    "on-click": "/home/thiago/.config/waybar/scripts/bluetooth-menu.sh",
+    "on-scroll-up": "playerctl next",
+    "on-scroll-down": "playerctl previous"
+  },
+
   "custom/brightness": {
     "exec": "/home/thiago/.config/waybar/scripts/brightness-bar.sh",
     "interval": 1,

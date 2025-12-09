@@ -43,6 +43,14 @@ window#waybar {
   padding: 0 8px;
 }
 
+#custom-audio-output.ok {
+    color: #f9e2af; /* sua cor */
+}
+
+#custom-audio-output.error {
+    color: #f38ba8;
+}
+
 tooltip {
   background: #000000;
   color: #f9e2af;
