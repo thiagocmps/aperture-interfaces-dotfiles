@@ -16,6 +16,7 @@
     "custom/bluetooth",
     "pulseaudio",
     "custom/brightness",
+    "custom/color-toggle",
     "clock",
     "battery"
   ],
@@ -26,8 +27,8 @@
   },
 
   "clock": {
-    "format": "%H:%M",
-    "tooltip-format": "%a %d %b %Y"
+    "format": "{:%d de %b %H:%M}",
+    "tooltip-format": "{:%A, %d de %B de %Y}"
   },
 
   "battery": {
@@ -37,11 +38,11 @@
       "critical": 15
     },
     "interval": 5,
-    "format": "BAT {capacity}% {icon}",
-    "format-full": "{capacity}% [▓▓▓▓▓▓]",
-    "format-charging": "{capacity}% {icon}",
-    "format-plugged": "{capacity}% {icon}",
-    "format-critical": "{capacity}% {icon}",
+    "format": "BAT <span foreground='#00ff00'>{capacity}% {icon}</span>",
+    "format-full": "BAT <span foreground='#00ff00'>{capacity}% [▓▓▓▓▓▓]</span>",
+    "format-charging": "BAT <span foreground='#00aa00'>{capacity}%+ {icon}</span>",
+    "format-plugged": "BAT <span foreground='#00aa00'>{capacity}% {icon}</span>",
+    "format-critical": "BAT <span foreground='#ff0000'>{capacity}% {icon}</span>",
     "format-icons": [
       "[░░░░░░]",
       "[▒░░░░░]",
@@ -62,13 +63,13 @@
   "network": {
     "interface": "wlan0",
     "on-click": "/home/thiago/.config/waybar/scripts/network-menu.sh",
-    "format": "[NET: {essid}]",
-    "format-disconnected": "[NET: OFF]"
+    "format": "[ NET ◉ {essid} ]",
+    "format-disconnected": "[ NET ○ ]"
   },
 
   "pulseaudio": {
     "format": "VOL {volume}% {icon}",
-    "format-muted": "[MUTE]",
+    "format-muted": "[ VOL MUTE ]",
     "format-icons": [
       "[░░░░░░]",
       "[▒░░░░░]",
@@ -114,7 +115,7 @@
     "exec": "/home/thiago/.config/waybar/scripts/bluetooth-status.sh",
     "interval": 1,
     "return-type": "json",
-    "format": "[BT {text}]",
+    "format": "[ BT {text} ]",
     "on-click": "/home/thiago/.config/waybar/scripts/bluetooth-menu.sh",
     "on-scroll-up": "playerctl next",
     "on-scroll-down": "playerctl previous"
@@ -127,5 +128,12 @@
     "tooltip": false,
     "on-scroll-up": "brightnessctl s +5%",
     "on-scroll-down": "brightnessctl s 5%-"
+  },
+
+  "custom/color-toggle": {
+    "exec": "echo '[ CHANGE THEME ]'",
+    "on-click": "/home/thiago/.config/waybar/scripts/toggle-color.sh",
+    "format": "{}",
+    "tooltip": "Toggle color theme"
   }
 }

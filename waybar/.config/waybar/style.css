@@ -1,37 +1,19 @@
 * {
   font-family: "Iosevka Nerd Font", monospace;
   font-size: 13px;
-  /* color: #f9e2af; */
-  /* color: #f9e2af; */
-  /* color: #f9e2af; */
-  color: #f9e2af;
+  color: #aaf9b6;
   border: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-shadow: none;
+  text-shadow: 0 0 3px #00ff00, 0 0 6px #00ff00;
 }
 
 window#waybar {
-  /* background: rgba(0, 0, 0, 0.7); */
   background: rgba(0, 0, 0, 1); /* 0 = transparente / 1 = opaco */
-  border-bottom: 2px solid #f9e2af;
+  border-bottom: 2px solid #aaf9b6;
   padding-bottom: 2px;
   padding-top: 2px;
 }
-
-/* #workspaces button {
-  color: #f9e2af;
-  background: transparent;
-  border-radius: 0%;
-  padding: 0 4px;
-} */
-
-/* #workspaces button.active {
-  border: 2px #f9e2af;
-  border-radius: 0%;
-  padding: 4px;
-  font-weight: bold;
-} */
 
 #clock,
 #battery,
@@ -43,44 +25,20 @@ window#waybar {
   padding: 0 8px;
 }
 
-#custom-audio-output.ok {
-    color: #f9e2af; /* sua cor */
-}
-
 #custom-audio-output.error {
-    color: #f38ba8;
+    color: #aaf9b6;
 }
 
 tooltip {
   background: #000000;
-  color: #f9e2af;
-  border: 1px solid #f9e2af;
-}
-
-/* Bateria normal */
-#battery {
-  color: #f9e2af; /* verde */
-}
-
-/* Aviso */
-#battery.warning {
-  color: #f9e2af; /* amarelo/laranja */
-}
-
-/* Crítico */
-#battery.critical {
-  color: #f9e2af; /* vermelho */
-}
-
-/* Carregando */
-#battery.charging {
-  color: #00FFFF; /* azul claro */
+  color: #aaf9b6;
+  border-bottom: 2px solid #aaf9b6;
 }
 
 #pulseaudio.normal {
-  color: #f9e2af; /* verde */
+  color: #aaf9b6; /* verde */
 }
 
 #pulseaudio.warning {
-  color: #ac1f15; /* amarelo/laranja */
+  color: #aaf9b6; /* amarelo/laranja */
 }

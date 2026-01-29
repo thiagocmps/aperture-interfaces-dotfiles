@@ -5,7 +5,7 @@ MAX_CHARS=180
 # Dependências
 for dep in playerctl jq curl awk; do
   if ! command -v "$dep" >/dev/null 2>&1; then
-    echo "[erro: '$dep' não encontrado]"
+    echo "[ erro: '$dep' não encontrado ]"
     exit 1
   fi
 done
@@ -14,7 +14,7 @@ title=$(playerctl metadata xesam:title 2>/dev/null)
 artist=$(playerctl metadata xesam:artist 2>/dev/null)
 
 if [[ -z "$title" || -z "$artist" ]]; then
-    echo "[MUSIC: OFF]"
+    echo "[ MUSIC: OFF ]"
     exit 0
 fi
 
@@ -62,7 +62,7 @@ fi
 
 # Se não há LRC
 if [[ ! -s "$CACHE_PARSED" ]]; then
-    echo "[$artist - $title | (no synced lyrics)]"
+    echo "[ $artist - $title | (no synced lyrics) ]"
     exit 0
 fi
 
