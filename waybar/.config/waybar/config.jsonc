@@ -38,12 +38,18 @@
       "critical": 15
     },
     "interval": 5,
-    "format": "BAT <span foreground='#00ff00'>{capacity}% {icon}</span>",
+    /* "format": "BAT <span foreground='#00ff00'>{capacity}% {icon}</span>",
     "format-full": "BAT <span foreground='#00ff00'>{capacity}% [▓▓▓▓▓▓]</span>",
     "format-charging": "BAT <span foreground='#00aa00'>{capacity}%+ {icon}</span>",
     "format-plugged": "BAT <span foreground='#00aa00'>{capacity}% {icon}</span>",
     "format-critical": "BAT <span foreground='#ff0000'>{capacity}% {icon}</span>",
-    "format-icons": [
+     */
+     "format": "BAT <span>{capacity}% {icon}</span>",
+    "format-full": "BAT <span>{capacity}% [▓▓▓▓▓▓]</span>",
+    "format-charging": "BAT <span>{capacity}%+ {icon}</span>",
+    "format-plugged": "BAT <span>{capacity}% {icon}</span>",
+    "format-critical": "BAT <span>{capacity}% {icon}</span>",
+     "format-icons": [
       "[░░░░░░]",
       "[▒░░░░░]",
       "[▒▒░░░░]",

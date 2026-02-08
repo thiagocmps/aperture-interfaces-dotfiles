@@ -33,7 +33,7 @@ darken_color() {
 # Define all themes
 THEME_NAMES=("theme1" "theme2" "theme3" "theme4" "theme5")
 THEME_COLORS=("#f8f8ff" "#00ff00" "#df3079" "#e9b200" "#aaf9b6")
-GLOW_COLOR=("#000000" "#00ff00" "#00ff00" "#00ff00" "#00ff00")
+GLOW_COLOR=("#000000" "#00ff00" "#00ff00" "#00ff00" "#21BF36")
 THEME_BGS=("#000000" "#000000" "#000000" "#000000" "#000000")
 THEME_ACCENTS=("#df3079" "#ff0000" "#ff6b9d" "#00ff88" "#ffcc00")
 
@@ -71,7 +71,7 @@ WAYBAR_STYLE="$HOME/.config/waybar/style.css"
 sed -i "s/color: #[0-9a-fA-F]\{6\};/color: $COLOR;/" "$WAYBAR_STYLE"
 sed -i "s/border.*solid #[0-9a-fA-F]\{6\};/border-bottom: 2px solid $COLOR;/" "$WAYBAR_STYLE"
 sed -i "s/background: #[0-9a-fA-F]\{6\};/background: $BG;/" "$WAYBAR_STYLE"
-sed -i "s/text-shadow: 0 0 3px #[0-9a-fA-F]\{6\}, 0 0 6px #[0-9a-fA-F]\{6\};/text-shadow: 0 0 3px $GLOW, 0 0 6px $GLOW;/" "$WAYBAR_STYLE"
+sed -i "s/text-shadow: 0 0 2px #[0-9a-fA-F]\{6\}, 0 0 4px #[0-9a-fA-F]\{6\};/text-shadow: none;/" "$WAYBAR_STYLE"
 
 # Update Hyprland config
 HYPR_CONF="$HOME/.config/hypr/hyprland.conf"
@@ -110,5 +110,3 @@ case $NEW_THEME in
     "theme5") THEME_DISPLAY_NAME="🌟 Dourado" ;;
     *) THEME_DISPLAY_NAME="$NEW_THEME" ;;
 esac
-
-notify-send "🎨 Tema Alterado" "$THEME_DISPLAY_NAME\n$COLOR"

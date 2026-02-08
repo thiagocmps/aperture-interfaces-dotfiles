@@ -1,18 +1,18 @@
 window {
     background-color: rgba(0, 0, 0, 1);
-    border: 2px solid #aaf9b6;
+    border: 2px solid #00ff00;
     border-radius: 6px;
     padding: 12px;
 }
 
 listitem:selected {
     background: rgba(213, 213, 213, 0.33);
-    color: #aaf9b6;
+    color: #00ff00;
 }
 #input {
     background: transparent;
-    border: 1px solid #aaf9b6;
-    color: #aaf9b6;
+    border: 1px solid #00ff00;
+    color: #00ff00;
     padding: 6px;
     margin-bottom: 10px;
     font-family: "Iosevka Nerd Font", monospace;
@@ -31,5 +31,5 @@ listitem:selected {
 }
 
 #text {
-    color: #aaf9b6;
+    color: #00ff00;
 }

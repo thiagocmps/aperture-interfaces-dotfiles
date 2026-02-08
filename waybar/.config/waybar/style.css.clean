@@ -1,7 +1,7 @@
 * {
   font-family: "Iosevka Nerd Font", monospace;
   font-size: 13px;
-  color: #00ff00;
+  color: #e9b200;
   border: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,7 +10,7 @@
 
 window#waybar {
   background: rgba(0, 0, 0, 1); /* 0 = transparente / 1 = opaco */
-  border-bottom: 2px solid #00ff00;
+  border-bottom: 2px solid #aaf9b6;
   padding-bottom: 2px;
   padding-top: 2px;
 }
@@ -26,19 +26,19 @@ window#waybar {
 }
 
 #custom-audio-output.error {
-    color: #00ff00;
+    color: #e9b200;
 }
 
 tooltip {
   background: #000000;
-  color: #00ff00;
-  border-bottom: 2px solid #00ff00;
+  color: #e9b200;
+  border-bottom: 2px solid #aaf9b6;
 }
 
 #pulseaudio.normal {
-  color: #00ff00; /* verde */
+  color: #e9b200; /* verde */
 }
 
 #pulseaudio.warning {
-  color: #00ff00; /* amarelo/laranja */
+  color: #e9b200; /* amarelo/laranja */
 }
