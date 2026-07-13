@@ -20,11 +20,7 @@ function install_nvim {
     mv "$CONFIG_PATH/nvim" "$CONFIG_PATH/nvim-backup" && echo "Backup criado!" 
     stow --target="$HOME" nvim && echo "Configuração instalada com sucesso!"
   else 
-    if ! command -v stow >/dev/null 2>&1; then
-      echo "Erro: GNU Stow não está instalado."
-      exit 1
-    fi
-    stow --target="$HOME" nvim && echo "Configuração instalada com sucesso!"
+   stow --target="$HOME" nvim && echo "Configuração instalada com sucesso!"
   fi 
 }
 
