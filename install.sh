@@ -5,14 +5,33 @@ CONFIG_PATH="$HOME/.config"
 ALT_PATH="$HOME/Documentos/caminho-alternativo"
 ROOT_ALT_PATH="$HOME/Documentos"
 
-
 set -e
+
+function install_nvim {
+  if [[ -d "$CONFIG_PATH"/nvim ]]; then
+    echo "Há uma configuração ativa. Vai ser criado "nvim-backup" com as configurações antigas."
+    mv "$CONFIG_PATH/nvim" "$CONFIG_PATH/nvim-backup" && echo "Backup criado!"
+    
+    if ! command -v stow >/dev/null 2>&1; then
+      echo "Erro: GNU Stow não está instalado."
+      exit 1
+    fi 
+    stow --target="$HOME" nvim
+    #mkdir "$ALT_PATH" && touch "$ALT_PATH/instalado-aqui.txt" && echo "Instalado!"
+  else 
+    if ! command -v stow >/dev/null 2>&1; then
+      echo "Erro: GNU Stow não está instalado."
+      exit 1
+    fi
+    stow --target="$HOME" nvim
+  fi 
+}
+
 
 printf '%*s\n' "$(tput cols)" '' | tr ' ' '='
 
 printf "Bem-vindo, %s!\n\n" "$USER"
 printf "Pretende instalar as configurações de quais programas?\n\n"
-
 printf "[0] Instalar todos\n"
 printf "[1] Neovim\n"
 printf "[2] Hypr\n"
@@ -55,28 +74,6 @@ while true; do
       ;;  
   esac
 done
-  
-
-function install_nvim {
-  if [[ -d "$CONFIG_PATH"/nvim ]]; then
-    echo "Há uma configuração ativa. Vai ser criado "nvim-backup" com as configurações antigas."
-    mv "$CONFIG_PATH/nvim" "$CONFIG_PATH/nvim-backup" && echo "Backup criado!"
-    
-    if ! command -v stow >/dev/null 2>&1; then
-      echo "Erro: GNU Stow não está instalado."
-      exit 1
-    fi 
-    stow --target="$HOME" nvim
-    #mkdir "$ALT_PATH" && touch "$ALT_PATH/instalado-aqui.txt" && echo "Instalado!"
-  else 
-    if ! command -v stow >/dev/null 2>&1; then
-      echo "Erro: GNU Stow não está instalado."
-      exit 1
-    fi
-    stow --target="$HOME" nvim
-  fi 
-}
-
 
 
 # cria  backup das configuracoes caso tenha e instala por cima
