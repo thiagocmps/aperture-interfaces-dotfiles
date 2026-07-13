@@ -7,6 +7,10 @@
 - spotify
 - cava (obvio)
 - grim (pra print)
+- nvim
 
 # QUESTOES PARA RESOLVER
-- Workspaces
+- Workspaces (hypr config)
+- LSP syntax (nvim)
+- Coesão na itnerface (waybar)
+- Implementar nvim ao invés de vim (ranger)
