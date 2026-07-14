@@ -3,6 +3,8 @@ CONFIG_PATH="$HOME/.config"
 
 set -e
 
+cd "$(dirname "$0")"
+
 #Caso nao tenha Stow instalado, fecha o programa
 if ! command -v stow >/dev/null 2>&1; then
   echo "Erro: GNU Stow não está instalado."
@@ -12,7 +14,7 @@ fi
 #Funções principais
 #nvim
 function install_nvim {
-  if [[ -d "$CONFIG_PATH"/nvim ]]; then
+  if [[ -d "$CONFIG_PATH/nvim" ]]; then
     echo "Há uma configuração ativa. Vai ser criado "nvim-backup" com as configurações antigas."
     mv "$CONFIG_PATH/nvim" "$CONFIG_PATH/nvim-backup" && echo "Backup criado!" 
     stow --target="$HOME" nvim && echo "Configuração instalada com sucesso!"
@@ -23,7 +25,7 @@ function install_nvim {
 
 #hypr
 function install_hypr {
-  if [[ -d "$CONFIG_PATH"/hypr ]]; then
+  if [[ -d "$CONFIG_PATH/hypr" ]]; then
     echo "Há uma configuração ativa. Vai ser criado "hypr-backup" com as configurações antigas."
     mv "$CONFIG_PATH/hypr" "$CONFIG_PATH/hypr-backup" && echo "Backup criado!" 
     stow --target="$HOME" hypr && echo "Configuração instalada com sucesso!"
@@ -33,7 +35,7 @@ function install_hypr {
 }
 
 function install_waybar {
-  if [[ -d "$CONFIG_PATH"/waybar ]]; then
+  if [[ -d "$CONFIG_PATH/waybar" ]]; then
     echo "Há uma configuração ativa. Vai ser criado "waybar-backup" com as configurações antigas."
     mv "$CONFIG_PATH/waybar" "$CONFIG_PATH/waybar-backup" && echo "Backup criado!" 
     stow --target="$HOME" waybar && echo "Configuração instalada com sucesso!"
@@ -43,7 +45,7 @@ function install_waybar {
 }
 
 function install_wofi {
-  if [[ -d "$CONFIG_PATH"/wofi ]]; then
+  if [[ -d "$CONFIG_PATH/wofi" ]]; then
     echo "Há uma configuração ativa. Vai ser criado "wofi-backup" com as configurações antigas."
     mv "$CONFIG_PATH/wofi" "$CONFIG_PATH/wofi-backup" && echo "Backup criado!" 
     stow --target="$HOME" wofi && echo "Configuração instalada com sucesso!"
@@ -53,7 +55,7 @@ function install_wofi {
 }
 
 function install_kitty {
-  if [[ -d "$CONFIG_PATH"/kitty ]]; then
+  if [[ -d "$CONFIG_PATH/kitty" ]]; then
     echo "Há uma configuração ativa. Vai ser criado "kitty-backup" com as configurações antigas."
     mv "$CONFIG_PATH/kitty" "$CONFIG_PATH/kitty-backup" && echo "Backup criado!" 
     stow --target="$HOME" kitty && echo "Configuração instalada com sucesso!"
@@ -74,6 +76,7 @@ printf "[3] Waybar\n"
 printf "[4] Wofi\n"
 printf "[5] Kitty\n"
 
+printf "(É necessário ter o nvim na última versão para as configurações funcionarem 100% sem problemas)"
 while true; do
   read -r -p "Escolha: " INPUT
   
