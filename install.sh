@@ -1,10 +1,6 @@
 #!/bin/bash
 CONFIG_PATH="$HOME/.config"
 
-#NVIM_PATH="$HOME/.config/nvim" 
-ALT_PATH="$HOME/Documentos/caminho-alternativo"
-ROOT_ALT_PATH="$HOME/Documentos"
-
 set -e
 
 #Caso nao tenha Stow instalado, fecha o programa
@@ -14,6 +10,7 @@ if ! command -v stow >/dev/null 2>&1; then
 fi 
 
 #Funções principais
+#nvim
 function install_nvim {
   if [[ -d "$CONFIG_PATH"/nvim ]]; then
     echo "Há uma configuração ativa. Vai ser criado "nvim-backup" com as configurações antigas."
@@ -21,6 +18,47 @@ function install_nvim {
     stow --target="$HOME" nvim && echo "Configuração instalada com sucesso!"
   else 
    stow --target="$HOME" nvim && echo "Configuração instalada com sucesso!"
+  fi 
+}
+
+#hypr
+function install_hypr {
+  if [[ -d "$CONFIG_PATH"/hypr ]]; then
+    echo "Há uma configuração ativa. Vai ser criado "hypr-backup" com as configurações antigas."
+    mv "$CONFIG_PATH/hypr" "$CONFIG_PATH/hypr-backup" && echo "Backup criado!" 
+    stow --target="$HOME" hypr && echo "Configuração instalada com sucesso!"
+  else 
+   stow --target="$HOME" hypr && echo "Configuração instalada com sucesso!"
+  fi 
+}
+
+function install_waybar {
+  if [[ -d "$CONFIG_PATH"/waybar ]]; then
+    echo "Há uma configuração ativa. Vai ser criado "waybar-backup" com as configurações antigas."
+    mv "$CONFIG_PATH/waybar" "$CONFIG_PATH/waybar-backup" && echo "Backup criado!" 
+    stow --target="$HOME" waybar && echo "Configuração instalada com sucesso!"
+  else 
+   stow --target="$HOME" waybar && echo "Configuração instalada com sucesso!"
+  fi 
+}
+
+function install_wofi {
+  if [[ -d "$CONFIG_PATH"/wofi ]]; then
+    echo "Há uma configuração ativa. Vai ser criado "wofi-backup" com as configurações antigas."
+    mv "$CONFIG_PATH/wofi" "$CONFIG_PATH/wofi-backup" && echo "Backup criado!" 
+    stow --target="$HOME" wofi && echo "Configuração instalada com sucesso!"
+  else 
+   stow --target="$HOME" wofi && echo "Configuração instalada com sucesso!"
+  fi 
+}
+
+function install_kitty {
+  if [[ -d "$CONFIG_PATH"/kitty ]]; then
+    echo "Há uma configuração ativa. Vai ser criado "kitty-backup" com as configurações antigas."
+    mv "$CONFIG_PATH/kitty" "$CONFIG_PATH/kitty-backup" && echo "Backup criado!" 
+    stow --target="$HOME" kitty && echo "Configuração instalada com sucesso!"
+  else 
+   stow --target="$HOME" kitty && echo "Configuração instalada com sucesso!"
   fi 
 }
 
@@ -42,6 +80,7 @@ while true; do
   case "$INPUT" in
     0) 
       echo "Instalando tudo..."
+      install_nvim && install_hypr && install_waybar && install_wofi && install_kitty && echo "Instalados com sucesso" 
       break
       ;;  
     1)
@@ -51,18 +90,22 @@ while true; do
       ;;  
     2)
       echo "Instalando hypr..."
+      install_hypr
       break
       ;;
     3)
       echo "Instalando waybar..."
+      install_waybar
       break
       ;;  
     4)
       echo "Instalando wofi..."
+      install_wofi
       break
       ;;  
     5)
-      echo "Instalando tudo..."
+      echo "Instalando kitty..."
+      install_kitty
       break
       ;;
     *) 
@@ -71,14 +114,3 @@ while true; do
       ;;  
   esac
 done
-
-
-# cria  backup das configuracoes caso tenha e instala por cima
-#if [[ -d "$ALT_PATH" ]]; then
-#  echo "A pasta existe. Criando Backup..."
-#  mv "$ALT_PATH" "$ROOT_ALT_PATH/caminho-alternativo-backup" && echo "Backup criado!"
-#  mkdir "$ALT_PATH" && touch "$ALT_PATH/instalado-aqui.txt" && echo "Instalado!"
-#else
-#  echo "A pasta não existe. Instalando...." 
-#  mkdir "$ALT_PATH" && touch "$ALT_PATH/instalado-aqui.txt" && echo "Instalado com sucesso!"
-#fi
