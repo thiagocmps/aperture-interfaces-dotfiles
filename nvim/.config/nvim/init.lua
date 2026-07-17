@@ -23,7 +23,8 @@ vim.g.maplocalleader = "\\"
 
 -- Setup lazy.nvim
 
-local opts = {}
-
 require("vim-options")
+require("lsp-utils")
 require("lazy").setup("plugins")
+
+vim.lsp.enable({ "ts_ls", "lua_ls"})
