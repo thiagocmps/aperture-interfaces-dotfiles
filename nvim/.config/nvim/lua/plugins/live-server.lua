@@ -6,7 +6,7 @@ return {
 	keys = {
 		{
 			"<leader>ls",
-			"<cmd>LiveServerToogle<cr>",
+			"<cmd>LiveServerToggle<cr>",
 			desc = "Toggle Live Server",
 		},
 	},
