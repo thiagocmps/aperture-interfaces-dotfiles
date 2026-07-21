@@ -15,29 +15,35 @@ if [[ "$OSTYPE" =~ ^linux ]]; then
       ubuntu|debian)
         echo "Estás a usar uma base Debian ($ID)"
         PKG_MANAGER="sudo apt install"
+        THIS_OS_TYPE="debian"
         echo $PKG_MANAGER
         ;;
       fedora|rhel|centos)
         echo "Estás a usar uma base Red Hat ($ID)"
         PKG_MANAGER="sudo dnf install"  
+        THIS_OS_TYPE="fedora"
         echo $PKG_MANAGER
         ;;
       alpine)
         echo "Estás a usar Alpine Linux"
         PKG_MANAGER="apk add"
+        THIS_OS_TYPE="alpine"
         echo $PKG_MANAGER
         ;;
       arch)
         echo "Estás a usar Arch Linux"
         PKG_MANAGER="sudo pacman -S"
+        THIS_OS_TYPE="arch"
         echo $PKG_MANAGER
         ;;
       *)
         echo "Distribuição Linux não identificada: $ID"
+        echo  "Vou compilar o nvim mesmo assim, me diz se funcionou :D"
+        THIS_OS_TYPE="other_linux"
         ;;
     esac
   else
-    echo "Arquivo  /etc/os-release não encontrado. Sistema muito antigo?"
+    echo "Arquivo /etc/os-release não encontrado. Sistema muito antigo?"
   fi
   #id do MacOS
 elif [[ "$OSTYPE" =~ ^darwin ]] then
@@ -70,8 +76,17 @@ fi
 
 #Instalacao do nvim
 if ! command -v nvim &> /dev/null; then
-  echo "Neovim não foi encontrado, instalando"
-  $PKG_MANAGER  nvim
+  echo "Neovim não foi encontrado, instalando..."
+  if  [[ $THIS_OS_TYPE =~ ^debian  || $THIS_OS_TYPE =~ ^fedora  ]] 
+    echo  "Sistema $THIS_OS_TYPE detectado. Compilando Nvim do repositório oficial..."
+    # 1. Instala as dependências usando a sua variável (funciona para Debian e Fedora)
+    $PKG_MANAGER ninja-build cmake gcc g++ make unzip gettext curl git
+
+    # 2. Baixa, compila e instala o Neovim estável em uma única linha de comandos encadeados
+    rm -rf /tmp/neovim && git clone -b stable --single-branch https://github.com /tmp/neovim && cd /tmp/neovim && make CMAKE_BUILD_TYPE=Release && sudo make install
+  else
+    $PKG_MANAGER  nvim
+  fi   
 fi
 
 #Funções principais
