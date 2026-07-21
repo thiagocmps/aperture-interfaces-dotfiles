@@ -74,68 +74,6 @@ if ! command -v nvim &> /dev/null; then
   $PKG_MANAGER  nvim
 fi
 
-
-#Menu CLI
-printf '%*s\n' "$(tput cols)" '' | tr ' ' '='
-
-printf "\n"
-
-printf "Pretende instalar as configurações de quais programas?\n\n"
-
-printf "[0] Instalar todos\n"
-printf "[1] Neovim\n"
-printf "[2] Hypr\n"
-printf "[3] Waybar\n"
-printf "[4] Wofi\n"
-printf "[5] Kitty\n"
-
-printf "\n"
-printf '%*s\n' "$(tput cols)" '' | tr ' ' '='
-printf "\n"
-
-printf "(É necessário ter o nvim na última versão para as configurações funcionarem sem problemas)"
-while true; do
-  printf "\n"
-  read -r -p ">: " INPUT
-
-  case "$INPUT" in
-    0) 
-      echo "Instalando tudo..."
-      install_nvim && install_hypr && install_waybar && install_wofi && install_kitty && echo "Instalados com sucesso" 
-      break
-      ;;  
-    1)
-      echo "Instalando neovim..."
-      install_nvim
-      break
-      ;;  
-    2)
-      echo "Instalando hypr..."
-      install_hypr
-      break
-      ;;
-    3)
-      echo "Instalando waybar..."
-      install_waybar
-      break
-      ;;  
-    4)
-      echo "Instalando wofi..."
-      install_wofi
-      break
-      ;;  
-    5)
-      echo "Instalando kitty..."
-      install_kitty
-      break
-      ;;
-    *) 
-      echo "Opção Inválida."
-      break
-      ;;  
-  esac
-done
-
 #Funções principais
 #nvim
 function install_nvim {
@@ -222,3 +160,64 @@ function install_kitty {
     stow -v --target="$HOME" kitty && echo "Configuração instalada com sucesso!"
   fi 
 }
+
+#Menu CLI
+printf '%*s\n' "$(tput cols)" '' | tr ' ' '='
+
+printf "\n"
+
+printf "Pretende instalar as configurações de quais programas?\n\n"
+
+printf "[0] Instalar todos\n"
+printf "[1] Neovim\n"
+printf "[2] Hypr\n"
+printf "[3] Waybar\n"
+printf "[4] Wofi\n"
+printf "[5] Kitty\n"
+
+printf "\n"
+printf '%*s\n' "$(tput cols)" '' | tr ' ' '='
+printf "\n"
+
+printf "(É necessário ter o nvim na última versão para as configurações funcionarem sem problemas)"
+while true; do
+  printf "\n"
+  read -r -p ">: " INPUT
+
+  case "$INPUT" in
+    0) 
+      echo "Instalando tudo..."
+      install_nvim && install_hypr && install_waybar && install_wofi && install_kitty && echo "Instalados com sucesso" 
+      break
+      ;;  
+    1)
+      echo "Instalando neovim..."
+      install_nvim
+      break
+      ;;  
+    2)
+      echo "Instalando hypr..."
+      install_hypr
+      break
+      ;;
+    3)
+      echo "Instalando waybar..."
+      install_waybar
+      break
+      ;;  
+    4)
+      echo "Instalando wofi..."
+      install_wofi
+      break
+      ;;  
+    5)
+      echo "Instalando kitty..."
+      install_kitty
+      break
+      ;;
+    *) 
+      echo "Opção Inválida."
+      break
+      ;;  
+  esac
+done
