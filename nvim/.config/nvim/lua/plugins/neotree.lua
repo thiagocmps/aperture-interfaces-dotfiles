@@ -1,3 +1,21 @@
+local c = {
+	bg = "#14141a", -- Fundo preto azulado
+	fg = "#ffffff", -- Texto normal branco (como o texto selecionado)
+
+	orange = "#e88333", --"#d75f00", -- Cor dos comandos como 'export', 'alias', 'shopt'
+	st_orange = "#e04f2b",
+	cyan = "#27e3e3", -- Cor das variáveis LESS_TERMCAP_*
+	magenta = "#d700af", -- Símbolos, atribuições (=) e parênteses $()
+	pink = "#ff5fdf", -- Conteúdo de comandos como 'tput'
+	violet = "#8B86BB",
+	sft_violet = "#a9a1e1",
+	blue = "#005fff", -- Títulos comentados como '# Support colors in less'
+	red = "#d70000", -- Avisos e saídas de erro em caminhos como '2>/dev/null'
+	sft_red = "#ec5f67",
+	yellow = "#d7af00", -- Valores numéricos de escape e strings secundárias
+	green = "#98be65", -- Parâmetros de sucesso ou finalizações normais
+}
+
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
@@ -9,6 +27,28 @@ return {
 
 	lazy = false,
 	config = function()
+		local highlights = {
+			NeoTreeNormal = { fg = c.fg, bg = c.bg },
+			NeoTreeNormalNC = { fg = c.fg, bg = c.bg },
+			NeoTreeWinSeparator = { fg = "#222230", bg = c.bg },
+
+			NeoTreeDirectoryName = { fg = c.violet },
+			NeoTreeDirectoryIcon = { fg = c.violet },
+			NeoTreeFileName = { fg = c.fg },
+
+			NeoTreeGitModified = { fg = c.orange },
+			NeoTreeGitAdded = { fg = c.green },
+			NeoTreeGitDeleted = { fg = c.red },
+			NeoTreeGitUntracked = { fg = c.yellow },
+
+			NeoTreeCursorLine = { fg = c.bg, bg = c.fg },
+		}
+
+		-- 2. LOOP NECESSÁRIO: Aplica as cores criadas acima diretamente na API do Neovim
+		for group, settings in pairs(highlights) do
+			vim.api.nvim_set_hl(0, group, settings)
+		end
+
 		require("neo-tree").setup({
 			popup_border_style = "NC", -- or "" to use 'winborder' on Neovim v0.11+
 			enable_git_status = true,
