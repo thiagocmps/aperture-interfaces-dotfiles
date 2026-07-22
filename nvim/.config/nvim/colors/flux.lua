@@ -1,170 +1,53 @@
--- colors/flux.lua
-
-vim.cmd("hi clear")
-
-if vim.fn.exists("syntax_on") == 1 then
-	vim.cmd("syntax reset")
-end
-
-vim.o.background = "dark"
-vim.g.colors_name = "flux"
-
-----------------------------------------------------
--- Palette
-----------------------------------------------------
-
+-- 1. Definição da Paleta de Cores Extraída da Imagem
 local c = {
-	bg = "#00000D",
-	bg_alt = "#0F0F1C",
-	bg_dark = "#191926",
-	bg_popup = "#323232",
+	bg = "#14141a", -- Fundo preto azulado
+	fg = "#ffffff", -- Texto normal branco (como o texto selecionado)
 
-	fg = "#FFFFFF",
-
-	green = "#77FF1D",
-	lime = "#C4E665",
-
-	pink = "#E65BC0",
-	red = "#FF6981",
-
-	blue = "#7889B2",
-	cyan = "#BBD7FE",
-	lavender = "#C0C7FF",
-
-	orange = "#FED597",
-
-	diff_add = "#252556",
-	diff_change = "#4C4C09",
-	diff_delete = "#3F000A",
-	diff_text = "#66326E",
+	orange = "#e88333", --"#d75f00", -- Cor dos comandos como 'export', 'alias', 'shopt'
+	st_orange = "#e04f2b",
+	cyan = "#27e3e3", -- Cor das variáveis LESS_TERMCAP_*
+	magenta = "#d700af", -- Símbolos, atribuições (=) e parênteses $()
+	pink = "#ff5fdf", -- Conteúdo de comandos como 'tput'
+	violet = "#8B86BB",
+	sft_violet = "#a9a1e1",
+	blue = "#005fff", -- Títulos comentados como '# Support colors in less'
+	red = "#d70000", -- Avisos e saídas de erro em caminhos como '2>/dev/null'
+	sft_red = "#ec5f67",
+	yellow = "#d7af00", -- Valores numéricos de escape e strings secundárias
+	green = "#98be65", -- Parâmetros de sucesso ou finalizações normais
 }
 
-----------------------------------------------------
--- Helper
-----------------------------------------------------
-
-local hl = vim.api.nvim_set_hl
-
-local function set(groups)
-	for group, opts in pairs(groups) do
-		hl(0, group, opts)
-	end
-end
-
-----------------------------------------------------
--- Highlights
-----------------------------------------------------
-
-set({
-
-	------------------------------------------------
-	-- Editor
-	------------------------------------------------
-
+-- 2. Mapeamento de Grupos de Sintaxe do Neovim
+local highlights = {
+	-- Estrutura Geral da Interface
 	Normal = { fg = c.fg, bg = c.bg },
-	Cursor = { bg = c.fg },
+	Comment = { fg = c.violet, italic = true }, -- Comentários em Azul igual à imagem
 
-	CursorLine = { bg = c.bg },
-	CursorColumn = { bg = c.bg },
+	-- Elementos de Código Base
+	Keyword = { fg = c.orange, bold = true }, -- 'export', 'alias' em Laranja
+	Statement = { fg = c.orange }, -- Declarações estruturais
+	Identifier = { fg = c.cyan }, -- Variáveis LESS_TERMCAP_* em Ciano
 
-	LineNr = { fg = c.fg, bg = c.bg_dark },
-	NonText = { fg = c.fg, bg = c.bg_alt },
+	-- Operadores e Strings
+	Operator = { fg = c.sft_red }, -- Sinais de '=' e delimitadores em Magenta
+	String = { fg = c.pink }, -- Conteúdo de strings internas em Rosa
+	Special = { fg = c.yellow }, -- Códigos de cor numérica e escapes em Amarelo
 
-	VertSplit = { fg = c.fg, bg = c.bg_dark },
+	-- Erros e Condições de Saída
+	Error = { fg = c.red, bold = true }, -- Fluxos de erro em Vermelho
+	PreProc = { fg = c.green }, -- Diretivas e inclusões em Verde
 
-	StatusLine = { fg = c.fg, bg = "#272E1E", italic = true },
-	StatusLineNC = { fg = c.fg, bg = "#282835" },
+	-- Elementos Visuais Especiais da Imagem
+	Visual = { fg = c.bg, bg = c.fg }, -- Destaque invertido igual ao cursor em 'cdspell'
+}
 
-	Folded = { fg = c.fg, bg = c.bg },
+-- 3. Aplicação do Tema no Neovim
+vim.cmd("hi clear")
+if vim.fn.exists("syntax_on") then
+	vim.cmd("syntax reset")
+end
+vim.g.colors_name = "meutema_terminal"
 
-	Title = { fg = c.lime, bold = true },
-
-	Visual = { fg = c.red, bg = c.bg_popup },
-
-	MatchParen = {
-		fg = c.green,
-		bg = c.bg,
-		bold = true,
-	},
-
-	SpecialKey = {
-		fg = c.pink,
-		bg = c.bg_alt,
-	},
-
-	------------------------------------------------
-	-- Popup
-	------------------------------------------------
-
-	Pmenu = {
-		fg = c.fg,
-		bg = c.bg_popup,
-	},
-
-	PmenuSel = {
-		fg = c.fg,
-		bg = c.lime,
-	},
-
-	------------------------------------------------
-	-- Tabs
-	------------------------------------------------
-
-	TabLineFill = {
-		fg = "#662A3B",
-		bg = "#5E5E5E",
-	},
-
-	TabLineSel = {
-		fg = "#FFFFD7",
-		bold = true,
-	},
-
-	------------------------------------------------
-	-- Diff
-	------------------------------------------------
-
-	DiffAdd = {
-		bg = c.diff_add,
-	},
-
-	DiffChange = {
-		bg = c.diff_change,
-	},
-
-	DiffDelete = {
-		fg = "#FF0000",
-		bg = c.diff_delete,
-	},
-
-	DiffText = {
-		bg = c.diff_text,
-	},
-
-	------------------------------------------------
-	-- Syntax
-	------------------------------------------------
-
-	Comment = { fg = c.lime },
-
-	Constant = { fg = c.pink },
-	Number = { fg = c.pink },
-
-	Identifier = { fg = c.blue },
-
-	Statement = { fg = c.green },
-	Keyword = { fg = c.green },
-
-	Function = { fg = c.cyan },
-
-	Type = { fg = c.orange },
-
-	String = { fg = c.red },
-
-	Special = { fg = c.lavender },
-	PreProc = { fg = c.lavender },
-
-	pythonBuiltin = {
-		fg = c.blue,
-	},
-})
+for group, settings in pairs(highlights) do
+	vim.api.nvim_set_hl(0, group, settings)
+end
