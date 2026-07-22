@@ -77,6 +77,8 @@ fi
 #Instalacao do nvim
 if ! command -v nvim &> /dev/null; then
   echo "Neovim não foi encontrado, instalando..."
+# compilar neovim do repositorio oficial, em desenvolvimento
+
   if  [[ $THIS_OS_TYPE =~ ^debian  || $THIS_OS_TYPE =~ ^fedora  ]] then  
     echo  "Sistema $THIS_OS_TYPE detectado. Compilando Nvim do repositório oficial..."
     # 1. Instala as dependências usando a sua variável (funciona para Debian e Fedora)
@@ -84,9 +86,10 @@ if ! command -v nvim &> /dev/null; then
 
     # 2. Baixa, compila e instala o Neovim estável em uma única linha de comandos encadeados
     rm -rf /tmp/neovim && git clone -b stable --single-branch https://github.com/neovim/neovim.git /tmp/neovim && cd /tmp/neovim && make CMAKE_BUILD_TYPE=Release && sudo make install
-  else
+PKG_MANAGER  else
     $PKG_MANAGER nvim
   fi   
+  $PKG_MANAGER nvim
 fi
 
 #Funções principais

@@ -26,5 +26,5 @@ vim.g.maplocalleader = "\\"
 require("vim-options")
 require("lsp-utils")
 require("lazy").setup("plugins")
-
+-- vim.cmd.colorscheme("flux")
 vim.lsp.enable({ "ts_ls", "lua_ls", "bashls", "rust_analyzer" })
