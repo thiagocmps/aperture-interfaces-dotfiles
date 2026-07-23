@@ -8,54 +8,58 @@
 ![Neovim](https://img.shields.io/badge/Neovim-57A143?logo=neovim&logoColor=white)
 ![License](https://img.shields.io/github/license/SEU_USUARIO/aperture-interfaces)
 
-Este repositório reúne as configurações que utilizo diariamente no meu ambiente Linux. O projeto começou como um conjunto de dotfiles para o **Hyprland**, mas acabou crescendo e hoje também inclui configurações de ferramentas que fazem parte do meu fluxo de trabalho.
+Este repositório tem como principal objetivo guardar os meus dotfiles do famoso Window Manager **Hyprland**, mas eventualmente acabei adicionando também algumas configurações de programas que utilizo com frequência.
 
-A identidade visual é inspirada nos computadores das décadas de 70 e 80, misturada com a estética da série **Portal**, daí o nome **Aperture Interfaces**.
-
----
-
-## Preview
-
-<p align="center">
-    <img src="assets/desktop.png" width="90%">
-</p>
+A inspiração veio dos computadores da década de 80, o que inevitavelmente me lembra **Portal**, daí o nome **Aperture Interfaces**.
 
 ---
 
-# Programas
+## Tema do Hyprland
 
-| Programa | Descrição |
-|----------|-----------|
-| Hyprland | Window Manager principal |
-| Hyprpaper | Wallpapers |
-| Waybar | Barra de status |
-| Wofi | Launcher |
-| Kitty | Terminal |
-| Neovim | Editor de código |
+```text
+Por aqui, fotos do ambiente.
+```
 
 ---
 
-# Instalação
+## Programas envolvidos
 
-Existem três formas de instalar as configurações:
-
-1. `install.sh` (**recomendado**)
-2. GNU Stow
-3. Instalação manual (não recomendado)
+- **Wofi:** Launcher de programas
+- **Hyprpaper:** Gerenciador de wallpapers para o Hyprland
+- **Kitty:** Terminal customizado com tema retrô
+- **Neovim:** Editor de texto configurado com LSP
 
 ---
 
-## install.sh
+## Instalação
 
-### O que o script faz?
+Existem três opções de instalação:
 
-O script detecta automaticamente a distribuição Linux utilizada e instala o **GNU Stow**, caso ele ainda não esteja presente.
+1. Utilizar o `install.sh` (**recomendado**)
+2. Utilizar o GNU Stow
+3. Copiar/mover os diretórios manualmente (**não faça isso**)
 
-Depois disso, verifica se o **Neovim** está instalado.
+---
 
-Nas distribuições baseadas em **Debian** e **Fedora**, o script compila automaticamente a versão mais recente e estável do Neovim diretamente do repositório oficial. Isso evita incompatibilidades com plugins mais recentes.
+### install.sh
 
-Após essas verificações, é exibido um menu permitindo escolher quais configurações serão instaladas.
+#### Antes de utilizar
+
+Antes de usar o `install.sh`, vale explicar exatamente o que ele faz.
+
+Basicamente, ele detecta o sistema operativo em que está a ser executado e utiliza o gerenciador de pacotes da distribuição para instalar o **GNU Stow**, caso ele não esteja instalado.
+
+Em seguida, verifica se o **Neovim** existe no sistema e, caso não exista, instala-o.
+
+> **Detalhe importante**
+>
+> Caso a sua distribuição seja baseada em **Debian** ou **Red Hat**, o script compila automaticamente o Neovim diretamente do repositório oficial, utilizando a branch mais recente e estável.
+>
+> O motivo é simples: muitos dos plugins utilizados nestes dotfiles são demasiado recentes para as versões disponíveis nos repositórios `apt` e `dnf`.
+>
+> É possível que outras distribuições também precisem desse processo, mas como só testei nessas duas, a compilação automática foi implementada apenas para elas.
+
+Depois disso, será apresentado um menu CLI com as opções de instalação.
 
 Caso já exista alguma configuração correspondente em `~/.config`, ela será movida para:
 
@@ -63,74 +67,66 @@ Caso já exista alguma configuração correspondente em `~/.config`, ela será m
 ~/.config/<programa>-backup
 ```
 
----
+É só isso.
 
-### Executando
+#### Executando
+
+Na raiz do projeto, execute:
 
 ```bash
 bash install.sh
 ```
 
-Será exibido um menu semelhante a este:
+Será apresentado um menu semelhante a este:
 
 ```text
-Quais configurações deseja instalar?
+Pretende instalar as configurações de quais programas?
 
-0 - Todas
+0 - Instalar todos
 1 - Neovim
-2 - Hyprland
+2 - Hypr
 3 - Waybar
 4 - Wofi
 5 - Kitty
 
-> 
+>
 ```
+
+Basta escolher a opção desejada e pronto.
 
 ---
 
-## GNU Stow
+### GNU Stow
 
-O projeto foi organizado para funcionar naturalmente com o GNU Stow.
-
-Exemplo:
+O projeto foi organizado pensando na utilização do **GNU Stow**. Caso não queira utilizar o script de instalação, basta executar:
 
 ```bash
 stow nvim
 ```
 
-ou
-
-```bash
-stow kitty
-```
+ou qualquer outro diretório que desejar instalar.
 
 ---
 
-# Problemas conhecidos
+## Problemas pendentes
 
-- [ ] Implementar workspaces independentes para múltiplos monitores.
-- [ ] Após compilar o Neovim em distribuições baseadas em Debian/Fedora, o `install.sh` não continua automaticamente (`No /usr/bin/nvim directory`).
-
----
-
-# Roadmap
-
-- [ ] Doom Emacs
-- [ ] Alacritty
-- [ ] Ranger
+- **Hyprland:** Implementação de workspaces individuais por monitor.
+- **install.sh:** Após compilar o Neovim em distribuições baseadas em Debian ou Fedora, a instalação dos dotfiles não continua automaticamente (`No /usr/bin/nvim directory`).
 
 ---
 
-# Futuro do projeto
+## Roadmap
 
-Inicialmente este repositório era dedicado apenas ao Hyprland.
+- Doom Emacs
+- Alacritty
+- Ranger
 
-Como ele acabou crescendo bastante, provavelmente será dividido em dois projetos:
+---
 
-- **Aperture Interfaces**
-  - Apenas personalização visual do Hyprland.
+## Futuro do projeto
 
-- **Dotfiles**
-  - Configurações de ferramentas como Neovim, Ranger, Doom Emacs, Kitty, etc.
+Como referi anteriormente, a ideia inicial era utilizar este repositório apenas para os dotfiles do Hyprland.
 
-Assim, quem quiser apenas o tema do Hyprland não precisará instalar configurações de programas que talvez nem utilize.
+No entanto, acabei por adicionar configurações de programas que não fazem parte desse tema, como o Neovim.
+
+O melhor dos mundos seria criar um repositório exclusivamente para ferramentas que utilizo de forma global no sistema (Neovim, Ranger, Doom Emacs, Kitty, etc.) e manter o **Aperture Interfaces** focado apenas na personalização visual do Hyprland.
