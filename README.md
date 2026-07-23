@@ -134,9 +134,3 @@ Como ele acabou crescendo bastante, provavelmente será dividido em dois projeto
   - Configurações de ferramentas como Neovim, Ranger, Doom Emacs, Kitty, etc.
 
 Assim, quem quiser apenas o tema do Hyprland não precisará instalar configurações de programas que talvez nem utilize.
-
----
-
-## Licença
-
-Este projeto está licenciado sob a licença MIT.
