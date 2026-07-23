@@ -1,4 +1,4 @@
-# O que é
+# Meus dotfiles
 
 Este repositório tem como principal objetivo guardar dotfiles do famoso Window Manager Hyprland, mas eventualmente adicionei algumas configurações de programas que utilizo com frequência. Me inspirei bastante em computadores da decada de 80, o que inevitavelmente me lembra Portal, por isso o nome Aperture Interfaces.
 
