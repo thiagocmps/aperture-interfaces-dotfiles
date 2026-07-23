@@ -20,8 +20,6 @@ A identidade visual é inspirada nos computadores das décadas de 70 e 80, mistu
     <img src="assets/desktop.png" width="90%">
 </p>
 
-> *(Substitua pela captura do seu ambiente.)*
-
 ---
 
 # Programas
